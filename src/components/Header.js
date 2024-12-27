@@ -8,9 +8,9 @@ const Header = () => {
   const dropdownRef = useRef(null);
 
   const languages = [
-    { code: 'tr', name: 'TR', flag: '🇹🇷' },
-    { code: 'en', name: 'EN', flag: '🇬🇧' },
-    { code: 'de', name: 'DE', flag: '🇩🇪' }
+    { code: 'tr', name: 'TR', flag: 'tr' },
+    { code: 'en', name: 'EN', flag: 'gb' },
+    { code: 'de', name: 'DE', flag: 'de' }
   ];
 
   useEffect(() => {
@@ -51,10 +51,11 @@ const Header = () => {
           <select value={currentLang} onChange={handleLanguageChange}>
             {languages.map(lang => (
               <option key={lang.code} value={lang.code}>
-                <span className="lang-flag">{lang.flag}</span> {lang.name}
+                <span className={`fi fi-${lang.flag}`}></span> {lang.name}
               </option>
             ))}
           </select>
+          <span className={`selected-flag fi fi-${languages.find(l => l.code === currentLang)?.flag}`}></span>
         </div>
         
         <button 
