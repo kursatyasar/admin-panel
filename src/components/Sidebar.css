@@ -2,76 +2,41 @@
   position: fixed;
   left: 0;
   top: 0;
-  bottom: 0;
+  height: 100vh;
   width: 60px;
   background-color: #2c3e50;
   transition: width 0.3s ease;
+  overflow: hidden;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  padding-top: 1rem;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .sidebar.expanded {
   width: 240px;
 }
 
-.toggle-button {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 1rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s ease;
-}
-
-.toggle-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.menu-items {
+.sidebar-content {
+  height: 100%;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
-  width: 100%;
+  gap: 0.5rem;
 }
 
-.menu-item-wrapper {
-  display: flex;
-  flex-direction: column;
+.menu-item-container {
+  position: relative;
   width: 100%;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  color: white;
+  padding: 0.75rem 1.5rem;
+  color: #fff;
   text-decoration: none;
-  transition: all 0.3s ease;
   white-space: nowrap;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 240px;
   position: relative;
-  min-width: 60px;
-}
-
-.menu-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.menu-item.active {
-  background-color: #3498db;
 }
 
 .menu-item i {
@@ -79,75 +44,78 @@
   text-align: center;
   margin-right: 1rem;
   font-size: 1.1rem;
-  flex-shrink: 0;
+}
+
+.menu-item:hover {
+  background-color: rgba(52, 152, 219, 0.2);
+}
+
+.menu-item.active {
+  background-color: rgba(52, 152, 219, 0.3);
+}
+
+.menu-item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover:before,
+.menu-item.active:before {
+  background-color: #3498db;
 }
 
 .menu-text {
   opacity: 0;
   transition: opacity 0.3s ease;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .expanded .menu-text {
   opacity: 1;
 }
 
-.submenu-arrow {
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
-
 .submenu {
   background-color: rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  width: 100%;
+  width: 240px;
 }
 
 .submenu-item {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem 0.75rem 3rem;
-  color: white;
+  color: #fff;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  padding: 0.5rem 1rem 0.5rem 3.5rem;
   font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  position: relative;
   width: 100%;
 }
 
+.submenu-item:before {
+  content: '•';
+  position: absolute;
+  left: 2.5rem;
+  opacity: 0.5;
+}
+
 .submenu-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+  background-color: rgba(52, 152, 219, 0.2);
 }
 
 .submenu-item.active {
+  opacity: 1;
   background-color: rgba(52, 152, 219, 0.3);
 }
 
-.submenu-dot {
-  margin-right: 0.5rem;
-  font-size: 1.2rem;
-  opacity: 0.5;
-  flex-shrink: 0;
-}
-
-/* Scrollbar stilleri */
-.sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+.submenu-item:hover:before,
+.submenu-item.active:before {
+  opacity: 1;
 } 
