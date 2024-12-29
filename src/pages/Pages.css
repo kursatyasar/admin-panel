@@ -331,26 +331,46 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
+  margin-top: 2rem;
 }
 
 .page-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
   background: white;
+  border: 1px solid #e1e1e1;
+  padding: 0.5rem 0.75rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-button:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #3498db;
+  color: #3498db;
 }
 
 .page-button.active {
-  background: #3498db;
-  color: white;
+  background-color: #3498db;
   border-color: #3498db;
+  color: white;
 }
 
-.page-button:hover:not(.active) {
-  background: #f8f9fa;
+.page-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
 }
 
 /* Ayarlar Sayfası Stilleri */

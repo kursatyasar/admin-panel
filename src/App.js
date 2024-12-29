@@ -1,34 +1,40 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Home from './pages/Home';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
 import UserRoles from './pages/UserRoles';
-import Settings from './pages/Settings';
+import Login from './pages/Login';
+import './App.css';
 
-function App() {
+const App = () => {
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+
   return (
-    <Router>
-      <div className="App">
-        <Sidebar />
-        <div className="main-wrapper">
-          <Header />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/users/roles" element={<UserRoles />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </main>
-        </div>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route 
+          path="/login" 
+          element={isAuthenticated ? <Navigate to="/" /> : <Login />} 
+        />
+        
+        <Route
+          path="/*"
+          element={isAuthenticated ? (
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/users/roles" element={<UserRoles />} />
+              </Routes>
+            </Layout>
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

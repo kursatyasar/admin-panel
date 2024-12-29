@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('tr');
   const dropdownRef = useRef(null);
@@ -31,8 +32,9 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    // Çıkış işlemleri burada yapılacak
-    console.log('Çıkış yapıldı');
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('user');
+    navigate('/login');
   };
 
   return (
