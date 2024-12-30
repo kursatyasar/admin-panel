@@ -10,6 +10,19 @@ import './App.css';
 const App = () => {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
+  // Auth durumu değiştiğinde sayfayı yenile
+  React.useEffect(() => {
+    const checkAuth = () => {
+      const currentAuth = localStorage.getItem('isAuthenticated') === 'true';
+      if (isAuthenticated !== currentAuth) {
+        window.location.href = currentAuth ? '/' : '/login';
+      }
+    };
+
+    window.addEventListener('storage', checkAuth);
+    return () => window.removeEventListener('storage', checkAuth);
+  }, [isAuthenticated]);
+
   return (
     <BrowserRouter>
       <Routes>

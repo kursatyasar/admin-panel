@@ -34,7 +34,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('user');
-    navigate('/login');
+    window.location.href = '/login';
   };
 
   return (
